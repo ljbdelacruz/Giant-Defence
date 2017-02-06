@@ -30,4 +30,7 @@ public class DataGetter : MonoBehaviour {
     public Stats GetMyStats() {
         return this.gameObject.GetComponent<Stats>();
     }
+    public FindCloserEnemyTarget GetMyTarget() {
+        return this.gameObject.GetComponent<FindCloserEnemyTarget>();
+    }
 }

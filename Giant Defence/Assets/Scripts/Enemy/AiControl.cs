@@ -35,7 +35,6 @@ public class AiControl : MonoBehaviour {
             {
                 //this is for attack stats purpose
                 this.SetPerformToZero();
-                this.GetData().GetMovement().PushBack();
                 this.GetData().GetMovement().SetVelocity(new Vector3(0, 0, 0));
                 //animation purpose
                 this.GetData().GetAnimation().Animate(1);

@@ -8,8 +8,11 @@ public class AiDefenceControls : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+        this.DataGet().GetMyTarget().NearestEnemy();
+        if (this.DataGet().GetMyTarget().GetTarget() != null) {
+            this.DataGet().GetEnemyDirection().target = this.DataGet().GetMyTarget().GetTarget();
+        }
 	}
-
     DataGetter DataGet() {
         return this.gameObject.GetComponent<DataGetter>();
     }

@@ -81,11 +81,13 @@
     <Compile Include="Assets\Scripts\CollisionDetection.cs" />
     <Compile Include="Assets\Scripts\DataGetter.cs" />
     <Compile Include="Assets\Scripts\Enemy\AiControl.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\FaceTarget.cs" />
     <Compile Include="Assets\Scripts\FindCloserEnemyTarget.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\MyAnimation.cs" />
     <Compile Include="Assets\Scripts\Player\AiDefenceControls.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Stats\Stats.cs" />
   </ItemGroup>
   <ItemGroup>

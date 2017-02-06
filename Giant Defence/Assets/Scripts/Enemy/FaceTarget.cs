@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class FaceTarget : MonoBehaviour {
-
     public GameObject target;
     private bool isSeen = false;
     private Vector3 direction;
@@ -13,7 +12,7 @@ public class FaceTarget : MonoBehaviour {
         this.FindTarget();
 	}
     void FindTarget() {
-        if (Vector3.Distance(target.GetComponent<Transform>().position, this.transform.position) < this.GetData().GetMyStats().range)
+        if (this.target != null && Vector3.Distance(target.GetComponent<Transform>().position, this.transform.position) < this.GetData().GetMyStats().range)
         {
             this.isSeen = true;
             direction = target.GetComponent<Transform>().position - this.transform.position;

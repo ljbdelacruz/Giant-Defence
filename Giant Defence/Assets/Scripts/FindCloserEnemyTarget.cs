@@ -3,32 +3,49 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class FindCloserEnemyTarget : MonoBehaviour {
-    public GameObject[] targets;
-    private List<GameObject> selectedTargetsWithinRange=new List<GameObject>();
-    private GameObject selectedTarget;
-    //this one gets all the targets within range and put it into the list
-    void pickTargets() {
-        for (int i = 0; i < this.targets.Length; i++) {
-            if (Vector3.Distance(targets[i].GetComponent<Transform>().position, this.transform.position) < this.GetData().GetMyStats().range) {
-                this.selectedTargetsWithinRange.Add(targets[i]);
-            }
+    private GameObject target;
+    private Object[] gEnemies;
+    //first call the GetEnemy before executing finding the nearest
+    //if this script is assign to player then find enemy vice versa
+    //this one picks the target who is more nearer to him and make that game object be the target
+    public void NearestEnemy() {
+        if (this.gEnemies != null)
+        {
+            GameObject nearest = this.GetNearest(gEnemies);
+            this.target = (nearest != null) ? nearest : null;
         }
     }
-    //this one picks the target who is more nearer to him and make that game object be the target
-    void nearestTarget() {
-        this.selectedTarget = this.selectedTargetsWithinRange[0];
-        for (int i = 0; i < this.selectedTargetsWithinRange.Count; i++) {
-            float odistance= Vector3.Distance(this.selectedTarget.GetComponent<Transform>().position, this.transform.position);
-            float ndistance = Vector3.Distance(selectedTargetsWithinRange[i].GetComponent<Transform>().position, this.transform.position);
-            if (ndistance < odistance)
+    public void NearestPlayer() {
+
+    }
+    GameObject GetNearest(Object[] enemies) {
+        GameObject nearestEnemy = null;
+        float dist = Mathf.Infinity;
+        //problems here is that if i send a player object type it will get an error it should work find a way
+        //work on Player Object when cannot use gameobject as reference since it will get an error
+        foreach (Enemy e in enemies)
+        {
+            float d = Vector3.Distance(this.transform.position, e.transform.position);
+            if (nearestEnemy == null || d < dist)
             {
-                this.selectedTarget = selectedTargetsWithinRange[i];
+                nearestEnemy = e.gameObject;
+                dist = d;
             }
         }
+        return nearestEnemy;
+    }
+
+    public void GetEnemies() {
+        this.gEnemies = GameObject.FindObjectsOfType<Enemy>();
+    }
+    public void GetPlayer()
+    {
+        this.gEnemies = GameObject.FindObjectsOfType<Player>();
+    }
+    public GameObject GetTarget() {
+        return this.target;
     }
     DataGetter GetData() {
         return this.gameObject.GetComponent<DataGetter>();
     }
-
-
 }
